@@ -211,3 +211,6 @@ dataset/
 
 # checkpoints
 *checkpoints/
+
+# evaluation results
+*eval_results*/

@@ -46,7 +46,7 @@ pip install transformers accelerate ninja
 
 # Install training utilities
 echo "Installing training utilities..."
-pip install tensorboard wandb huggingface-hub
+pip install tensorboard huggingface-hub
 
 # Summary
 echo ""

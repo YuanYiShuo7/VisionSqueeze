@@ -49,7 +49,7 @@ pip install transformers accelerate ninja
 
 REM Install training utilities
 echo Installing training utilities...
-pip install tensorboard wandb huggingface-hub
+pip install tensorboard huggingface-hub
 
 REM Summary
 echo.

@@ -16,8 +16,8 @@ from datetime import datetime
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from model.atf2d.encoder import Encoder
-from model.atf2d.decoder import Decoder
+from model.conv2d.encoder import Encoder
+from model.conv2d.decoder import Decoder
 
 class ImageDataset(Dataset):
     """图像数据集"""
@@ -171,7 +171,7 @@ class AutoEncoderTrainer:
         
         # 设置实验ID
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        self.experiment_id = f"{timestamp}_{config.get('experiment_name', 'autoencoder')}"
+        self.experiment_id = f"{timestamp}"
         
         # 创建保存目录
         self.save_dir = Path(config['save_dir']) / self.experiment_id
@@ -538,14 +538,14 @@ class AutoEncoderTrainer:
         return self.train_losses
 
 def main():
-    model_type = 'aft'
+    model_type = 'conv2d'
 
     config = {
 
         'model_type': model_type,
         
         # 数据配置
-        'image_dir': './dataset/001/images',
+        'image_dir': './dataset/train/',
         'batch_size': 1,
         'num_workers': 0,
         
@@ -554,7 +554,7 @@ def main():
         'freeze_encoder': False,
         
         # 训练配置
-        'num_epochs': 500,
+        'num_epochs': 200,
         'learning_rate': 1e-3,
         'min_lr': 1e-5,
         'weight_decay': 1e-4,
@@ -566,12 +566,12 @@ def main():
         'l1_weight': 0.5,
         
         # 保存配置 - 使用动态命名
-        'save_dir': f'./{model_type}_model_checkpoints',
+        'save_dir': f'./checkpoints/{model_type}',
         'save_every': 100,
         'save_image_every': 100,
         
         # 数据集配置
-        'max_samples': 1,
+        'max_samples': 10,
     }
     
     transform = None
